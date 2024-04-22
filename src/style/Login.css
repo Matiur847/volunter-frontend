@@ -1,0 +1,31 @@
+.loginSection {
+    background-color: #F8FAFC;
+    min-height: 100vh;
+}
+
+.loginArea {
+    padding: 120px 80px;
+    border: 2px solid rgba(128, 128, 128, 0.555);
+    background-color: #FFFFFF;
+    border-radius: 5px;
+}
+
+.loginArea button {
+    width: 100%;
+    border: 1px solid gainsboro;
+    background-color: #FFFFFF;
+    border-radius: 90px;
+}
+
+.loginArea button span {
+    font-weight: 600;
+}
+
+.loginArea button i {
+    font-size: 25px;
+    padding: 0px 10px;
+}
+
+.loginArea p {
+    font-weight: 600;
+}

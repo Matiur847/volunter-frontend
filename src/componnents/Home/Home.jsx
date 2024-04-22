@@ -1,4 +1,4 @@
-import { NavLink } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import "../../style/Header.css";
 import volunterLogo from "../../media/logos/Group-1329.png";
 import { useEffect, useState } from "react";
@@ -47,7 +47,9 @@ const Home = () => {
                 </NavLink>
               ))}
             </div>
-            <button className="headerBtn">Register</button>
+            <Link to='/login'>
+              <button className="headerBtn">Register</button>
+            </Link>
             <button className="headerBtn headerBtn2">Admin</button>
           </div>
         </div>
