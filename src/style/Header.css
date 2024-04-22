@@ -1,0 +1,67 @@
+.volunterHomePage {
+    background: linear-gradient(rgba(255, 255, 255, 0.836), rgba(255, 255, 255, 0.836)), url('../media/images/animalShelter.png');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: 10% 30%;
+    min-height: 50vh;
+}
+
+.volunterMenu a {
+    color: rgba(0, 0, 0, 0.747);
+    margin: 0px 20px;
+    font-size: 20px;
+    text-decoration: none;
+    font-weight: 500;
+}
+
+.volunterLogo img {
+    width: 40%;
+}
+
+.volunterMenu button {
+    margin: 0px 5px;
+    font-size: 19px;
+}
+
+.headerBtn {
+    border: none;
+    font-size: 100px;
+    font-weight: 400;
+    padding: 5px 15px;
+    border-radius: 5px;
+    background-color: #3F90FC;
+    color: rgba(255, 255, 255, 0.904);
+}
+.headerBtn2 {
+    background-color: #434141;
+    color: rgba(255, 255, 255, 0.904);
+}
+
+.homePageTitle h1 {
+    font-family: "Merriweather", serif;
+    font-weight: 600;
+}
+
+.searchField {
+    font-size: 24px;
+    border: 1px solid gray;
+    display: inline-block;
+    border-radius: 5px;
+}
+
+.searchField input {
+    border: none;
+    outline: none;
+}
+
+.searchField input::placeholder {
+    padding: 0px 20px;
+    font-size: 20px;
+}
+
+.inputSearchBtn {
+    border: none;
+    background-color: #3F90FC;
+    color: rgba(255, 255, 255, 0.904);
+    padding: 5px 15px;
+}
