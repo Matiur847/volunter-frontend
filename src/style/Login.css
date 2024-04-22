@@ -29,3 +29,9 @@
 .loginArea p {
     font-weight: 600;
 }
+
+.loginArea p span {
+    cursor: pointer;
+    color: blue;
+    text-decoration:underline;
+}

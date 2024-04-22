@@ -5,6 +5,7 @@ import { useEffect, useState } from "react";
 
 import { Col, Container, Row } from "react-bootstrap";
 import Volunters from "../Volunters/Volunters";
+import { getAuth, onAuthStateChanged } from "firebase/auth";
 
 const Home = () => {
   const navMenu = [
@@ -22,7 +23,7 @@ const Home = () => {
   };
 
   useEffect(() => {
-    fetch("data.json")
+    fetch('data.json')
       .then((res) => res.json())
       .then((data) => {
         const currentSearchValue = data.filter((item) =>
@@ -31,6 +32,15 @@ const Home = () => {
         setVolunter(currentSearchValue);
       });
   }, [searchValue]);
+
+  // Get current user
+  const [currentUser, setCurrentUser] = useState([]);
+  const auth = getAuth();
+  useEffect(() => {
+    onAuthStateChanged(auth, (user) => {
+      setCurrentUser(user);
+    });
+  }, [auth]);
 
   return (
     <div>
@@ -47,10 +57,18 @@ const Home = () => {
                 </NavLink>
               ))}
             </div>
-            <Link to='/login'>
-              <button className="headerBtn">Register</button>
-            </Link>
-            <button className="headerBtn headerBtn2">Admin</button>
+            {currentUser ? (
+              <p>{currentUser?.displayName}</p>
+            ) : (
+              <div>
+                <Link to="/login">
+                  <button className="headerBtn">Register</button>
+                </Link>
+                <Link to="/admin">
+                  <button className="headerBtn headerBtn2">Admin</button>
+                </Link>
+              </div>
+            )}
           </div>
         </div>
 

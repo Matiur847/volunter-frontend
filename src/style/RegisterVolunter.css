@@ -1,0 +1,30 @@
+.registerVolunter {
+    padding: 10px 20px;
+    width: 80%;
+}
+
+.registerVolunter h3 {
+    font-weight: 700;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+
+.volunterInput input {
+    width: 100%;
+    padding: 10px 0px;
+    margin: 10px 0px;
+    border: none;
+    outline: none;
+    border-bottom: 1px solid rgba(155, 151, 151, 0.74);
+}
+
+.volunterSubmitBtn {
+    border: none;
+    border-bottom: none;
+    background-color: #368DFF;
+    color: white;
+    font-weight: 600;
+}
+
+.volunterInput input::placeholder {
+    font-weight: 600;
+}
