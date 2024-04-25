@@ -5,7 +5,6 @@ import axios from "axios";
 const ActiveVolunterCard = ({ item }) => {
   const deleteVolunter = async (id) => {
     try {
-      // const config = { Headers: { "Content-Type": "application/json" } };
       await axios.delete(
         `http://localhost:4242/api/v1/deleteActiveVolunter/${id}`
       );
