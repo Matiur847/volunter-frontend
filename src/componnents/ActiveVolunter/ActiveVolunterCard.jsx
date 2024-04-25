@@ -1,11 +1,5 @@
 import React, { useEffect, useState } from "react";
 import "../../style/ActiveVolunterCard.css";
-
-import AspectRatio from "@mui/joy/AspectRatio";
-import Link from "@mui/joy/Link";
-import Card from "@mui/joy/Card";
-import CardContent from "@mui/joy/CardContent";
-import Typography from "@mui/joy/Typography";
 import axios from "axios";
 
 const ActiveVolunterCard = ({ item }) => {

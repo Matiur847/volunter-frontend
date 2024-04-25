@@ -10,16 +10,12 @@ const ActiveVolunter = () => {
   const [currentUser, setCurrentUser] = useState([]);
   const [activeVolunter, setActiveVolunter] = useState();
 
-  // console.log(activeVolunter)
-
   const auth = getAuth();
   useEffect(() => {
     onAuthStateChanged(auth, (user) => {
       setCurrentUser(user);
     });
   }, [auth]);
-
-  console.log("currentUser", activeVolunter);
 
   useEffect(() => {
     const filterVolunter = activeVolunter?.activeVolunter.filter(
@@ -43,13 +39,11 @@ const ActiveVolunter = () => {
       <Header currentUser={currentUser} />
       <Container>
         <Row>
-          {
-            activeVolunter?.activeVolunter.map((item) => (
-              <Col lg="6" md="6" sm="6" xs="12">
-                <ActiveVolunterCard item={item} />
-              </Col>
-            ))
-          }
+          {activeVolunter?.activeVolunter.map((item) => (
+            <Col lg="6" md="6" sm="6" xs="12">
+              <ActiveVolunterCard item={item} />
+            </Col>
+          ))}
         </Row>
       </Container>
     </div>
