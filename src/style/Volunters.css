@@ -2,6 +2,14 @@
     margin-bottom: 25px;
 }
 
+.volunterList a {
+    text-decoration: none;
+}
+
+.volunterList:hover p {
+    color: rgb(255, 94, 0);
+}
+
 p.MuiTypography-root.MuiTypography-title-lg.css-1lmr4d8-JoyTypography-root {
     text-align: center;
 }

@@ -1,17 +1,17 @@
-import { NavLink } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import "../../style/Header.css";
 import volunterLogo from "../../media/logos/Group-1329.png";
 
-const Header = () => {
+const Header = ({ currentUser }) => {
   const navMenu = [
-    { display: "Home" },
+    { display: "Home", path: "/" },
     { display: "Donation", path: "/donation" },
     { display: "Event", path: "/event" },
     { display: "Blog", path: "/blog" },
   ];
 
   return (
-    <div className="volunterHomePage">
+    <div className="headerNav">
       <div className="volunterHeader d-flex align-items-center justify-content-between">
         <div className="volunterLogo">
           <img src={volunterLogo} alt="" />
@@ -24,16 +24,18 @@ const Header = () => {
               </NavLink>
             ))}
           </div>
-          <button className="headerBtn">Register</button>
-          <button className="headerBtn headerBtn2">Admin</button>
-        </div>
-      </div>
-
-      <div className="homePageTitle text-center mt-5">
-        <h1>I GROW BY HELPING PEOPLE IN NEED.</h1>
-        <div className="searchField mt-3">
-          <input type="search" placeholder="search..." />
-          <button className="inputSearchBtn">Search</button>
+          {currentUser ? (
+            <span className="currentUserName">{currentUser?.displayName}</span>
+          ) : (
+            <div>
+              <Link to="/login">
+                <button className="headerBtn">Register</button>
+              </Link>
+              <Link to="/admin">
+                <button className="headerBtn headerBtn2">Admin</button>
+              </Link>
+            </div>
+          )}
         </div>
       </div>
     </div>

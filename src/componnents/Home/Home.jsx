@@ -1,11 +1,12 @@
 import { Link, NavLink } from "react-router-dom";
 import "../../style/Header.css";
+import "../../style/Home.css";
 import volunterLogo from "../../media/logos/Group-1329.png";
 import { useEffect, useState } from "react";
 
 import { Col, Container, Row } from "react-bootstrap";
 import Volunters from "../Volunters/Volunters";
-import { getAuth, onAuthStateChanged } from "firebase/auth";
+import { getAuth, onAuthStateChanged, signOut } from "firebase/auth";
 
 const Home = () => {
   const navMenu = [
@@ -42,6 +43,12 @@ const Home = () => {
     });
   }, [auth]);
 
+  const handleSignOut = () => {
+    signOut(auth).then(() => {
+      alert('Logout Successfully')
+    })
+  }
+
   return (
     <div>
       <div className="volunterHomePage">
@@ -58,7 +65,7 @@ const Home = () => {
               ))}
             </div>
             {currentUser ? (
-              <p>{currentUser?.displayName}</p>
+              <span className="currentUserName" onClick={handleSignOut}>{currentUser?.displayName}</span>
             ) : (
               <div>
                 <Link to="/login">

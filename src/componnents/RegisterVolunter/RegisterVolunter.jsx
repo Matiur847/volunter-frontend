@@ -2,11 +2,14 @@ import React, { useEffect, useState } from "react";
 import "../../style/RegisterVolunter.css";
 import volunterLogo from "../../media/logos/Group-1329.png";
 import { Col, Container, Row } from "react-bootstrap";
-import { useParams } from "react-router";
+import { useNavigate, useParams } from "react-router";
 import allData from "../../allData";
 import { getAuth, onAuthStateChanged } from "firebase/auth";
+import axios from "axios";
 
 const RegisterVolunter = () => {
+  const navigate = useNavigate();
+  const [regRes, setRegRes] = useState();
   const [currentVolunter, setCurrentVolunter] = useState([]);
   const { id } = useParams();
 
@@ -24,9 +27,60 @@ const RegisterVolunter = () => {
     setCurrentVolunter(filterVolunter);
   }, [id]);
 
+  const [fullName, setFullName] = useState("");
+  const [email, setEmail] = useState("");
+  const [date, setDate] = useState("");
+  const [description, setDescription] = useState("");
+  const [organize, setOrganize] = useState("");
+
+  useEffect(() => {
+    setFullName(currentUser?.displayName);
+    setEmail(currentUser?.email);
+    // const name = currentVolunter.map((item) => item.title)
+    // setOrganize(name);
+    currentVolunter.map((item) => setOrganize(item.title));
+  }, [currentUser?.displayName, currentUser?.email, currentVolunter]);
+
   const handleVolunterRegister = (e) => {
     e.preventDefault();
+
+    // let myForm = new FormData();
+    // myForm.append("fullName", fullName);
+    // myForm.append("email", email);
+    // myForm.append("date", date);
+    // myForm.append("description", description);
+    // myForm.append("organize", organize);
+
+    const config = {
+      Headers: { "content-type": "multipart/form-data" },
+    };
+
+    axios
+      .post(
+        "http://localhost:4242/api/v1/registerVolunter",
+        {
+          fullName: fullName,
+          email: email,
+          date: date,
+          description: description,
+          organize: organize,
+        },
+        config
+      )
+      .then((res) => {
+        setRegRes(res.data);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
   };
+
+  useEffect(() => {
+    if (regRes?.success === true) {
+      navigate("/active-volunter");
+      alert("Register Successfylly");
+    }
+  }, [regRes, navigate]);
 
   return (
     <div className="loginSection ">
@@ -45,29 +99,44 @@ const RegisterVolunter = () => {
           >
             <div className="loginArea registerVolunter mb-5">
               <h3 className="flex-end">Register as a volunteer</h3>
-              <form onSubmit={handleVolunterRegister}>
+              <form
+                onSubmit={handleVolunterRegister}
+                encType="multipart/form-data"
+              >
                 <div className="volunterInput">
-                  <input
-                    type="name"
-                    placeholder="Full Name"
-                    value={currentUser?.displayName}
-                  />{" "}
+                  <input type="name" placeholder="Full Name" value={fullName} />{" "}
                   <br />
                   <input
                     type="email"
                     placeholder="Username or Email"
-                    value={currentUser?.email}
+                    value={email}
                   />{" "}
                   <br />
-                  <input type="date" placeholder="Date" required /> <br />
-                  <input type="description" placeholder="Description" required/> <br />
+                  <input
+                    type="date"
+                    placeholder="Date"
+                    value={date}
+                    onChange={(e) => setDate(e.target.value)}
+                  />{" "}
+                  <br />
+                  <input
+                    type="description"
+                    placeholder="Description"
+                    value={description}
+                    onChange={(e) => setDescription(e.target.value)}
+                  />{" "}
+                  <br />
                   <input
                     type="books"
                     placeholder="Organize books at the library."
-                    required
+                    value={organize}
                   />{" "}
                   <br />
-                  <input className="volunterSubmitBtn" type="submit" value="Registration" />
+                  <input
+                    className="volunterSubmitBtn"
+                    type="submit"
+                    value="Registration"
+                  />
                 </div>
               </form>
             </div>
