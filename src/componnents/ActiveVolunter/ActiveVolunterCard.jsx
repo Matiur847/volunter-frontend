@@ -1,13 +1,17 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import "../../style/ActiveVolunterCard.css";
 import axios from "axios";
 
 const ActiveVolunterCard = ({ item }) => {
   const deleteVolunter = async (id) => {
     try {
-      await axios.delete(
-        `http://localhost:4242/api/v1/deleteActiveVolunter/${id}`
-      );
+      await axios
+        .delete(`http://localhost:4242/api/v1/deleteActiveVolunter/${id}`)
+        .then((res) => {
+          if (res.data.success === true) {
+            alert("Volunter register Cancel, reload page");
+          }
+        });
     } catch (error) {
       console.log(error);
     }
