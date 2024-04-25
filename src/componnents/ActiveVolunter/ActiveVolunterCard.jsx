@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import "../../style/ActiveVolunterCard.css";
 
 import AspectRatio from "@mui/joy/AspectRatio";
@@ -6,35 +6,34 @@ import Link from "@mui/joy/Link";
 import Card from "@mui/joy/Card";
 import CardContent from "@mui/joy/CardContent";
 import Typography from "@mui/joy/Typography";
+import axios from "axios";
 
 const ActiveVolunterCard = ({ item }) => {
-  console.log(item);
+  const deleteVolunter = async (id) => {
+    try {
+      // const config = { Headers: { "Content-Type": "application/json" } };
+      await axios.delete(
+        `http://localhost:4242/api/v1/deleteActiveVolunter/${id}`
+      );
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   return (
     <div className="activeVCard mt-5">
-      <Card variant="outlined" orientation="horizontal">
-        <AspectRatio ratio="1" sx={{ width: 120 }}>
-          <img src={item.img} loading="lazy" alt={item.organize} />
-        </AspectRatio>
-        <CardContent>
-          <Typography level="title-lg" id="card-description">
-            {item.organize}
-          </Typography>
-          <Typography
-            level="body-sm"
-            aria-describedby="card-description"
-            mb={1}
-          >
-            <Link
-              overlay
-              underline="none"
-              sx={{ color: "text.tertiary" }}
-            >
-              {item.date}
-            </Link>
-          </Typography>
-          <button className="volunterCancelBtn mt-4">Cancel</button>
-        </CardContent>
-      </Card>
+      <div className="cardDesign">
+        <div className="img">
+          <img src={item.img} alt="" className="w-100" />
+        </div>
+        <div className="title">
+          <h4>{item.organize}</h4>
+          <span>{item.date}</span>
+          <div className="cancelBtn">
+            <button onClick={() => deleteVolunter(item._id)}>Cancel</button>
+          </div>
+        </div>
+      </div>
     </div>
   );
 };
