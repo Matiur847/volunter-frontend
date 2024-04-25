@@ -1,0 +1,22 @@
+.activeVCard {
+    background-color: #FFFFFF;
+    padding: 10px;
+    border-radius: 5px;
+}
+
+.volunterCancelBtn {
+    border: none;
+    background-color: #E3E3E3;
+    padding: 5px 30px;
+    border-radius: 5px;
+    font-weight: 600;
+    color: rgba(0, 0, 0, 0.664);
+}
+
+p#card-description {
+    font-weight: 700 !important;
+}
+
+a.MuiLink-root.MuiLink-colorPrimary.MuiLink-inherit.MuiLink-underlineNone.css-1ycwfsi-JoyLink-root {
+    font-weight: 600 !important;
+}

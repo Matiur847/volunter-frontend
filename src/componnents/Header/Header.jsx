@@ -5,9 +5,9 @@ import volunterLogo from "../../media/logos/Group-1329.png";
 const Header = ({ currentUser }) => {
   const navMenu = [
     { display: "Home", path: "/" },
-    { display: "Donation", path: "/donation" },
+    { display: "Donation",  },
     { display: "Event", path: "/event" },
-    { display: "Blog", path: "/blog" },
+    { display: "Blog",  },
   ];
 
   return (

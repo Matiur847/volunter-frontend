@@ -12,7 +12,7 @@ const Routers = () => {
       <Route path="/" element={<Home />} />
       <Route path="/login" element={<Login />} />
       <Route path="/register-volunter/:id" element={<RegisterVolunter />} />
-      <Route path="/active-volunter" element={<ActiveVolunter />} />
+      <Route path="/event" element={<ActiveVolunter />} />
       <Route path="*" element={<NotFound />} />
     </Routes>
   );

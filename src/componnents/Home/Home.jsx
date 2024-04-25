@@ -11,9 +11,9 @@ import { getAuth, onAuthStateChanged, signOut } from "firebase/auth";
 const Home = () => {
   const navMenu = [
     { display: "Home" },
-    { display: "Donation", path: "/donation" },
+    { display: "Donation", path: "/" },
     { display: "Event", path: "/event" },
-    { display: "Blog", path: "/blog" },
+    { display: "Blog", path: "/" },
   ];
 
   const [volunter, setVolunter] = useState([]);

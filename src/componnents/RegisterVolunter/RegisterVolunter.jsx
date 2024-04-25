@@ -32,6 +32,7 @@ const RegisterVolunter = () => {
   const [date, setDate] = useState("");
   const [description, setDescription] = useState("");
   const [organize, setOrganize] = useState("");
+  const [img, setImg] = useState("");
 
   useEffect(() => {
     setFullName(currentUser?.displayName);
@@ -39,45 +40,45 @@ const RegisterVolunter = () => {
     // const name = currentVolunter.map((item) => item.title)
     // setOrganize(name);
     currentVolunter.map((item) => setOrganize(item.title));
+    currentVolunter.map((item) => setImg(item.img));
   }, [currentUser?.displayName, currentUser?.email, currentVolunter]);
 
   const handleVolunterRegister = (e) => {
     e.preventDefault();
 
-    // let myForm = new FormData();
-    // myForm.append("fullName", fullName);
-    // myForm.append("email", email);
-    // myForm.append("date", date);
-    // myForm.append("description", description);
-    // myForm.append("organize", organize);
+    if (currentUser?.email) {
+      const config = {
+        Headers: { "content-type": "multipart/form-data" },
+      };
 
-    const config = {
-      Headers: { "content-type": "multipart/form-data" },
-    };
-
-    axios
-      .post(
-        "http://localhost:4242/api/v1/registerVolunter",
-        {
-          fullName: fullName,
-          email: email,
-          date: date,
-          description: description,
-          organize: organize,
-        },
-        config
-      )
-      .then((res) => {
-        setRegRes(res.data);
-      })
-      .catch((error) => {
-        console.log(error);
-      });
+      axios
+        .post(
+          "http://localhost:4242/api/v1/registerVolunter",
+          {
+            fullName: fullName,
+            email: email,
+            date: date,
+            description: description,
+            organize: organize,
+            img: img,
+          },
+          config
+        )
+        .then((res) => {
+          setRegRes(res.data);
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+    } else {
+      alert('Please Login!')
+      navigate('/login')
+    }
   };
 
   useEffect(() => {
     if (regRes?.success === true) {
-      navigate("/active-volunter");
+      navigate("/event");
       alert("Register Successfylly");
     }
   }, [regRes, navigate]);
