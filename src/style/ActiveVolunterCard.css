@@ -27,6 +27,16 @@
     margin-left: 30px;
 }
 
+.title h4 {
+    font-weight: 700;
+    color: rgba(0, 0, 0, 0.616);
+}
+
+.title span {
+    font-weight: 600;
+    color: rgba(143, 97, 97, 0.699);
+}
+
 .cancelBtn {
     display: flex;
     justify-content: end;

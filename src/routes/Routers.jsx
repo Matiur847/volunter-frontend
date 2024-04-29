@@ -5,6 +5,7 @@ import Home from "../componnents/Home/Home";
 import Login from "../componnents/Login/Login";
 import RegisterVolunter from "../componnents/RegisterVolunter/RegisterVolunter";
 import ActiveVolunter from "../componnents/ActiveVolunter/ActiveVolunter";
+import Admin from "../componnents/Admin/Admin";
 
 const Routers = () => {
   return (
@@ -13,6 +14,7 @@ const Routers = () => {
       <Route path="/login" element={<Login />} />
       <Route path="/register-volunter/:id" element={<RegisterVolunter />} />
       <Route path="/event" element={<ActiveVolunter />} />
+      <Route path="/admin" element={<Admin />} />
       <Route path="*" element={<NotFound />} />
     </Routes>
   );
