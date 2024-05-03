@@ -9,6 +9,7 @@ import ActiveVolunterCard from "./ActiveVolunterCard";
 const ActiveVolunter = () => {
   const [currentUser, setCurrentUser] = useState([]);
   const [activeVolunter, setActiveVolunter] = useState();
+  const [filterVolunter, setFilterVolunter] = useState([]);
 
   const auth = getAuth();
   useEffect(() => {
@@ -21,6 +22,7 @@ const ActiveVolunter = () => {
     const filterVolunter = activeVolunter?.activeVolunter.filter(
       (volunter) => volunter.email === currentUser?.email
     );
+    setFilterVolunter(filterVolunter);
   }, [activeVolunter?.activeVolunter, currentUser?.email]);
 
   useEffect(() => {
@@ -39,7 +41,7 @@ const ActiveVolunter = () => {
       <Header currentUser={currentUser} />
       <Container>
         <Row>
-          {activeVolunter?.activeVolunter.map((item) => (
+          {filterVolunter?.map((item) => (
             <Col lg="6" md="6" sm="6" xs="12">
               <ActiveVolunterCard item={item} />
             </Col>

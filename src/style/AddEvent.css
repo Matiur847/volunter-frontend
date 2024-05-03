@@ -1,0 +1,46 @@
+.addEventSection {
+    background-color: #FFFFFF;
+    border-radius: 10px;
+    padding: 20px 0px;
+}
+
+.addEventSection h3 {
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    letter-spacing: 2px;
+}
+
+.addEventForm {
+    padding: 10px 30px;
+}
+
+.inputField span {
+    font-weight: 600;
+}
+
+.inputField {
+    margin: 10px 0px;
+}
+
+.inputField input {
+    width: 100%;
+    padding: 7px 15px;
+    border-radius: 5px;
+    border: 2px solid #0084ff6b;
+}
+
+.inputField input:focus {
+    outline: none;
+    border: 2px solid #0084FF;
+}
+
+/* .inputField textarea {
+    width: 100%;
+    min-width: 40px 0px;
+} */
+
+.addEventBtn {
+    background-color: #0084FF;
+    border: none;
+    color: white;
+    padding: 5px 0px;
+}

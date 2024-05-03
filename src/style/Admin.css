@@ -1,6 +1,7 @@
 .adminSection {
     background-color: #F4F7FC;
     margin-top: 10px;
+    min-height: 100vh;
 }
 
 .adminHtitle h3 {

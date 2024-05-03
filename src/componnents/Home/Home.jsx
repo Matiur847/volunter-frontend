@@ -95,7 +95,7 @@ const Home = () => {
         <Container>
           <Row>
             {volunter.map((item, index) => (
-              <Col lg="3" md="6" sm="6" xs="6">
+              <Col lg="3" md="6" sm="6" xs="6" key={index}>
                 <Volunters volunter={item} />
               </Col>
             ))}

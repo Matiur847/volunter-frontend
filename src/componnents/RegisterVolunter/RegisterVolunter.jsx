@@ -15,6 +15,7 @@ const RegisterVolunter = () => {
 
   // Get current user
   const [currentUser, setCurrentUser] = useState([]);
+  console.log(currentUser.uid);
   const auth = getAuth();
   useEffect(() => {
     onAuthStateChanged(auth, (user) => {
@@ -71,8 +72,8 @@ const RegisterVolunter = () => {
           console.log(error);
         });
     } else {
-      alert('Please Login!')
-      navigate('/login')
+      alert("Please Login!");
+      navigate("/login");
     }
   };
 

@@ -17,16 +17,17 @@ const Login = () => {
 
   const handleLogin = () => {
     signInWithPopup(auth, provider)
-    .then((result) => {
-      if (result.user) {
-        navigate("/");
-        alert("Login Successfully");
-      }
-    }).catch((error) => {
-      if(error.code === "auth/popup-closed-by-user") {
-        alert('Login Proceed Faild ')
-      }
-    })
+      .then((result) => {
+        if (result.user) {
+          navigate("/");
+          alert("Login Successfully");
+        }
+      })
+      .catch((error) => {
+        if (error.code === "auth/popup-closed-by-user") {
+          alert("Login Proceed Faild ");
+        }
+      });
   };
 
   return (
