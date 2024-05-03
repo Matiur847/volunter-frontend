@@ -1,28 +1,57 @@
 import React, { useState } from "react";
 import "../../style/AddEvent.css";
+import axios from "axios";
+import { useNavigate } from "react-router";
 
 const AddEvent = () => {
-  const [fullName, setFullName] = useState("");
-  const [email, setEmail] = useState("");
+  const navigate = useNavigate();
+  const [title, setTitle] = useState("");
   const [date, setDate] = useState("");
   const [description, setDescription] = useState("");
-  const [organize, setOrganize] = useState("");
-  const [image, setImage] = useState("");
+  const [img, setImg] = useState();
 
   const addEvent = (e) => {
     e.preventDefault();
+
+    let myForm = new FormData();
+    myForm.append("title", title);
+    myForm.append("date", date);
+    myForm.append("description", description);
+
+    axios
+      .post("http://localhost:4242/api/v1/addNewEvent", {
+        title: title,
+        date: date,
+        description: description,
+        img: img,
+      })
+      .then((data) => {
+        if (data.data.success === true) {
+          alert("Event Added successfully!");
+        }
+      })
+      .catch((error) => {
+        // console.log(error);
+      });
   };
 
-  const eventDataOnChange = (e) => {
-    // console.log("e", e);
+  const dataOnChange = (e) => {
     try {
       if (e.target.name === "img") {
-        console.log("Hello");
+        const reader = new FileReader();
+
+        reader.onload = () => {
+          if (reader.readyState === 2) {
+            setImg(reader.result);
+          }
+        };
+
+        reader.readAsDataURL(e.target.files[0]);
       } else {
-        // setEvent({ ...event, [e.target.name]: e.target.value });
-        // setEvent({ ...event, [e.target.name]: e.target.value });
       }
-    } catch (error) {}
+    } catch (error) {
+      // handle your error here
+    }
   };
 
   return (
@@ -36,20 +65,24 @@ const AddEvent = () => {
               type="title"
               placeholder="Enter Title"
               required
-              onChange={eventDataOnChange}
+              onChange={(e) => setTitle(e.target.value)}
             />
           </div>
           <div className="inputField">
             <span>Event Date</span> <br />
-            <input type="date" required onChange={eventDataOnChange} />
+            <input
+              type="date"
+              required
+              onChange={(e) => setDate(e.target.value)}
+            />
           </div>
           <div className="inputField">
             <span>Description</span> <br />
             <input
-              type="title"
+              type="description"
               required
               placeholder="Enter Title"
-              onChange={eventDataOnChange}
+              onChange={(e) => setDescription(e.target.value)}
             />
           </div>
           <div className="inputField">
@@ -59,7 +92,7 @@ const AddEvent = () => {
               name="img"
               accept="image/*"
               required
-              onChange={eventDataOnChange}
+              onChange={dataOnChange}
             />
           </div>
           <div className="inputField">
