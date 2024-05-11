@@ -1,0 +1,8 @@
+.deleteAction svg {
+    font-size: 25px;
+    cursor: pointer;
+}
+
+.deleteAction svg:hover {
+    color: blue;
+}

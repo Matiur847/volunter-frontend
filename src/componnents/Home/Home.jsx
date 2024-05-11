@@ -24,7 +24,7 @@ const Home = () => {
   };
 
   useEffect(() => {
-    fetch('data.json')
+    fetch("data.json")
       .then((res) => res.json())
       .then((data) => {
         const currentSearchValue = data.filter((item) =>
@@ -45,9 +45,22 @@ const Home = () => {
 
   const handleSignOut = () => {
     signOut(auth).then(() => {
-      alert('Logout Successfully')
-    })
-  }
+      alert("Logout Successfully");
+    });
+  };
+
+  useEffect(() => {
+    const listUser = (userToken) => {
+      auth
+        .currentUser()
+        .then((user) => {
+          console.log("currentUser", user);
+        })
+        .catch((error) => {
+          console.log(error.message);
+        });
+    };
+  }, [auth]);
 
   return (
     <div>
@@ -65,7 +78,9 @@ const Home = () => {
               ))}
             </div>
             {currentUser ? (
-              <span className="currentUserName" onClick={handleSignOut}>{currentUser?.displayName}</span>
+              <span className="currentUserName" onClick={handleSignOut}>
+                {currentUser?.displayName}
+              </span>
             ) : (
               <div>
                 <Link to="/login">
