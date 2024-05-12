@@ -8,7 +8,18 @@ import Spinner from "react-bootstrap/Spinner";
 const AddVolunter = () => {
   const [allVolunter, setAllVolunter] = useState();
   const [status, setStatus] = useState(0);
-  console.log(allVolunter);
+
+  const deleteUserFirebase = (id) => {
+    axios
+      .delete(`http://localhost:4242/api/v1/deleteUserFirebase/${id}`)
+      .then((res) => {
+        if (res.data.success === true) {
+          alert(`res.data.message, ${"Reload Page"}`);
+        }
+      })
+      .catch((error) => console.log("error", error.message));
+  };
+
   const columns = [
     {
       field: "image",
@@ -17,9 +28,11 @@ const AddVolunter = () => {
       flex: 1,
       sortable: false,
       renderCell: ({ row }) => {
+        console.log(row);
         return (
           <div>
             <div className="imgField p-2">
+              {/* {row} */}
               <img src={row.img} alt="" className="w-50" />
             </div>
           </div>
@@ -54,7 +67,10 @@ const AddVolunter = () => {
       renderCell: (params) => {
         return (
           <div className="deleteAction">
-            <MdDelete className="admin-svgBtn" />
+            <MdDelete
+              onClick={() => deleteUserFirebase(params.id)}
+              className="admin-svgBtn"
+            />
           </div>
         );
       },

@@ -1,10 +1,8 @@
 import React, { useState } from "react";
 import "../../style/AddEvent.css";
 import axios from "axios";
-import { useNavigate } from "react-router";
 
 const AddEvent = () => {
-  const navigate = useNavigate();
   const [title, setTitle] = useState("");
   const [date, setDate] = useState("");
   const [description, setDescription] = useState("");

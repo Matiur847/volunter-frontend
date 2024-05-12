@@ -15,7 +15,6 @@ const RegisterVolunter = () => {
 
   // Get current user
   const [currentUser, setCurrentUser] = useState([]);
-  console.log(currentUser.uid);
   const auth = getAuth();
   useEffect(() => {
     onAuthStateChanged(auth, (user) => {
@@ -34,6 +33,12 @@ const RegisterVolunter = () => {
   const [description, setDescription] = useState("");
   const [organize, setOrganize] = useState("");
   const [img, setImg] = useState("");
+
+  const [newEventVolunter, setNewVolunter] = useState([]);
+
+  // if (img === "") {
+  //   const eventVolunter = newEventVolunter?.allNewVolunter?.filter((item) => item._id === id);
+  // }
 
   useEffect(() => {
     setFullName(currentUser?.displayName);
@@ -83,6 +88,15 @@ const RegisterVolunter = () => {
       alert("Register Successfylly");
     }
   }, [regRes, navigate]);
+
+  useEffect(() => {
+    axios
+      .get("http://localhost:4242/api/v1/getAllNewRegisterVolunter")
+      .then((res) => {
+        setNewVolunter(res.data);
+      })
+      .catch((error) => console.log(error.message));
+  }, []);
 
   return (
     <div className="loginSection ">

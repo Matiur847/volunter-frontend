@@ -7,6 +7,8 @@ import { useEffect, useState } from "react";
 import { Col, Container, Row } from "react-bootstrap";
 import Volunters from "../Volunters/Volunters";
 import { getAuth, onAuthStateChanged, signOut } from "firebase/auth";
+import axios from "axios";
+import NewVolunter from "../Volunters/NewVolunter";
 
 const Home = () => {
   const navMenu = [
@@ -17,6 +19,7 @@ const Home = () => {
   ];
 
   const [volunter, setVolunter] = useState([]);
+  const [newEventVolunter, setNewVolunter] = useState([]);
   const [searchValue, setSearchValue] = useState("");
 
   const handleSearchItem = (e) => {
@@ -50,17 +53,15 @@ const Home = () => {
   };
 
   useEffect(() => {
-    const listUser = (userToken) => {
-      auth
-        .currentUser()
-        .then((user) => {
-          console.log("currentUser", user);
-        })
-        .catch((error) => {
-          console.log(error.message);
-        });
-    };
-  }, [auth]);
+    axios
+      .get("http://localhost:4242/api/v1/getAllNewRegisterVolunter")
+      .then((res) => {
+        setNewVolunter(res.data);
+      })
+      .catch((error) => console.log(error.message));
+  }, []);
+
+  console.log(newEventVolunter);
 
   return (
     <div>
@@ -112,6 +113,13 @@ const Home = () => {
             {volunter.map((item, index) => (
               <Col lg="3" md="6" sm="6" xs="6" key={index}>
                 <Volunters volunter={item} />
+              </Col>
+            ))}
+          </Row>
+          <Row>
+            {newEventVolunter?.allNewVolunter?.map((item, index) => (
+              <Col lg="3" md="6" sm="6" xs="6" key={index}>
+                <NewVolunter volunter={item} />
               </Col>
             ))}
           </Row>
